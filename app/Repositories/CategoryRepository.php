@@ -12,8 +12,8 @@ class CategoryRepository implements CategoryRepositoryInterface
      */
     public function createCategory($request)
     {
-        $database = DB::table('category')->insert(array('name' => $request));
-        if ($database)
+        $qb = DB::table('category')->insert(array('name' => $request));
+        if ($qb)
         {
             return true;
         }
@@ -26,9 +26,9 @@ class CategoryRepository implements CategoryRepositoryInterface
      */
     public function deleteCategory($id)
     {
-        $database = DB::table('category')->where(['id' => $id])->delete();
+        $qb = DB::table('category')->where(['id' => $id])->delete();
 
-        if ($database)
+        if ($qb)
         {
             return true;
         }

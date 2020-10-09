@@ -12,8 +12,8 @@ class ProductsRepository implements ProductRepositoryInterface
      */
     public function createProduct($request)
     {
-        $database = DB::table('products')->insert(array('name' => $request['productName'], 'product_price' => $request["productPrice"], 'category_id' => $request['productCategory']));
-        if ($database)
+        $qb = DB::table('products')->insert(array('name' => $request['productName'], 'product_price' => $request["productPrice"], 'category_id' => $request['productCategory']));
+        if ($qb)
         {
             return true;
         }
@@ -25,7 +25,7 @@ class ProductsRepository implements ProductRepositoryInterface
      */
     public function getProducts()
     {
-        $database = DB::table('products')
+        $qb = DB::table('products')
             ->leftJoin('category', 'products.category_id', '=', 'category.id')
             ->select(
                 'products.name',
@@ -37,7 +37,7 @@ class ProductsRepository implements ProductRepositoryInterface
             ->where('is_delete', false)
             ->get();
 
-        return $database;
+        return $qb;
     }
 
     /**
@@ -54,12 +54,12 @@ class ProductsRepository implements ProductRepositoryInterface
         if(isset($request->product_price)) { $reqPrice = $request->product_price; } else { $reqPrice = $getProduct[0]->product_price; }
         if(isset($request->category_id)) { $reqCat = $request->category_id; } else { $reqCat = $getProduct[0]->category_id; }
 
-        $database = DB::table('products')
+        $qb = DB::table('products')
             ->where(['id' => $id])
             ->update(array('name' => $reqName, 'product_price' => $reqPrice, 'category_id' => $reqCat))
         ;
 
-        if ($database)
+        if ($qb)
         {
             return true;
         }
@@ -72,9 +72,9 @@ class ProductsRepository implements ProductRepositoryInterface
      */
     public function deleteProduct($id)
     {
-        $database = DB::table('products')->where(['id' => $id])->delete();
+        $qb = DB::table('products')->where(['id' => $id])->delete();
 
-        if ($database)
+        if ($qb)
         {
             return true;
         }

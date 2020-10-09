@@ -61,10 +61,10 @@ class RestfulApiController extends Controller
 
         if($this->productRepository->createProduct($data))
         {
-            return Response::json(array('status' => 'success'));
+            return Response::json(['status' => 'success']);
         }
 
-        return Response::json(array('status' => 'error'));
+        return Response::json(['status' => 'error']);
     }
 
     /**
@@ -74,7 +74,7 @@ class RestfulApiController extends Controller
     {
         $result = $this->productRepository->getProducts();
 
-        return Response::json(array($result));
+        return Response::json([$result]);
     }
 
     /**
@@ -89,10 +89,10 @@ class RestfulApiController extends Controller
 
         if($result)
         {
-            return Response::json(array('status' => 'edit'));
+            return Response::json(['status' => 'edit']);
         }
 
-        return Response::json(array('status' => 'error'));
+        return Response::json(['status' => 'error']);
     }
 
     /**
@@ -105,10 +105,10 @@ class RestfulApiController extends Controller
 
         if($result)
         {
-            return Response::json(array('status' => 'delete'));
+            return Response::json(['status' => 'delete']);
         }
 
-        return Response::json(array('status' => 'error'));
+        return Response::json(['status' => 'error']);
     }
 
     /**
@@ -121,10 +121,10 @@ class RestfulApiController extends Controller
 
         if($this->categoryRepository->createCategory($categoryName))
         {
-            return Response::json(array('status' => 'success'));
+            return Response::json(['status' => 'success']);
         }
 
-        return Response::json(array('status' => 'error'));
+        return Response::json(['status' => 'error']);
     }
 
     /**
@@ -137,9 +137,9 @@ class RestfulApiController extends Controller
 
         if($result)
         {
-            return Response::json(array('status' => 'delete'));
+            return Response::json(['status' => 'delete']);
         }
 
-        return Response::json(array('status' => 'error'));
+        return Response::json(['status' => 'error']);
     }
 }
