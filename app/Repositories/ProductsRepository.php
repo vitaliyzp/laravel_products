@@ -33,6 +33,8 @@ class ProductsRepository implements ProductRepositoryInterface
                 'category.name as category_name',
                 'products.product_price'
                 )
+            ->where('is_published', true)
+            ->where('is_delete', false)
             ->get();
 
         return $database;
