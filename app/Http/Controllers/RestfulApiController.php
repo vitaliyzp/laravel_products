@@ -42,8 +42,6 @@ class RestfulApiController extends Controller
     }
 
     /**
-     * me
-     *
      * @param Request $request
      * @return \Illuminate\Http\JsonResponse
      */
